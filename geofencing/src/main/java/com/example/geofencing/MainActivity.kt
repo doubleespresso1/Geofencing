@@ -54,8 +54,9 @@ class MainActivity: AppCompatActivity(){
         }
         override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
                 super.onActivityResult(requestCode, resultCode, data)
-                // TODO: Step 7 add code to check that the user turned on their device location and ask
-                //  again if they did not
+                if (requestCode == REQUEST_TURN_DEVICE_LOCATION_ON) {
+                        checkDeviceLocationSettingsAndStartGeofence(false)
+                }
         }
         override fun onNewIntent(intent: Intent?) {
                 super.onNewIntent(intent)
@@ -72,12 +73,12 @@ class MainActivity: AppCompatActivity(){
          * In all cases, we need to have the location permission.  On Android 10+ (Q) we need to have
          * the background permission as well.
          */
-        @SuppressLint("MissingSuperCall")
         override fun onRequestPermissionsResult(
                 requestCode: Int,
                 permissions: Array<String>,
                 grantResults: IntArray
         ) {
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults)
                 Log.d(TAG, "onRequestPermissionResult")
 
                 if (
