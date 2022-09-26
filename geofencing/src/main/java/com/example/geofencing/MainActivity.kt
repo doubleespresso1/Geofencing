@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.geofencing
 
 import android.Manifest
@@ -16,7 +18,7 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.SavedStateViewModelFactory
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.BuildConfig
 import com.google.android.gms.location.GeofencingClient
 import com.example.geofencing.databinding.ActivityHuntMainBinding
@@ -38,8 +40,7 @@ class MainActivity: AppCompatActivity(){
         override fun onCreate(savedInstanceState: Bundle?) {
                 super.onCreate(savedInstanceState)
                 binding = DataBindingUtil.setContentView(this, R.layout.activity_hunt_main)
-                viewModel = ViewModelProviders.of(this, SavedStateViewModelFactory(this.application,
-                        this)).get(GeofenceViewModel::class.java)
+                viewModel = ViewModelProvider(this)[GeofenceViewModel::class.java]
                 binding.viewmodel = viewModel
                 binding.lifecycleOwner = this
                 // TODO: Step 9 instantiate the geofencing client
