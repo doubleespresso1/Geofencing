@@ -5,6 +5,7 @@ package com.example.geofencing
 import android.Manifest
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
@@ -36,7 +37,9 @@ class MainActivity: AppCompatActivity(){
         private lateinit var geofencingClient: GeofencingClient
         private lateinit var viewModel: GeofenceViewModel
 
+
         private val runningQOrLater = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q
+
 
 
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,22 +48,17 @@ class MainActivity: AppCompatActivity(){
                 viewModel = ViewModelProvider(this)[GeofenceViewModel::class.java]
                 binding.viewmodel = viewModel
                 binding.lifecycleOwner = this
-                // TODO: Step 9 instantiate the geofencing client
 
+                // TODO: Step 9 instantiate the geofencing client
                 // Create channel for notifications
                 createChannel(this )
         }
        public override fun onStart() {
                 super.onStart()
                 checkPermissionsAndStartGeofencing()
-
-                Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
-
-                val toast = Toast.makeText(applicationContext, "Hello Javatpoint", Toast.LENGTH_SHORT)
-                toast.show()
-
-
        }
+
+
         override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
                 super.onActivityResult(requestCode, resultCode, data)
                 if (requestCode == REQUEST_TURN_DEVICE_LOCATION_ON) {
