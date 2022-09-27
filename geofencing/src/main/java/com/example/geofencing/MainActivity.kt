@@ -13,6 +13,8 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.Settings
 import android.util.Log
+import android.view.Gravity
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -51,10 +53,14 @@ class MainActivity: AppCompatActivity(){
        public override fun onStart() {
                 super.onStart()
                 checkPermissionsAndStartGeofencing()
-                Log.d("Tag", "test")
+
+                Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
+
+                val toast = Toast.makeText(applicationContext, "Hello Javatpoint", Toast.LENGTH_SHORT)
+                toast.show()
 
 
-        }
+       }
         override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
                 super.onActivityResult(requestCode, resultCode, data)
                 if (requestCode == REQUEST_TURN_DEVICE_LOCATION_ON) {
