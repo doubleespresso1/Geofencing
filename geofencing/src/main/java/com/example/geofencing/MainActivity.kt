@@ -48,9 +48,12 @@ class MainActivity: AppCompatActivity(){
                 // Create channel for notifications
                 createChannel(this )
         }
-        override fun onStart() {
+       public override fun onStart() {
                 super.onStart()
                 checkPermissionsAndStartGeofencing()
+                Log.d("Tag", "test")
+
+
         }
         override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
                 super.onActivityResult(requestCode, resultCode, data)
